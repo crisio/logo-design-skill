@@ -136,7 +136,9 @@ If they want changes instead, iterate on the concepts (back to Phase 4–5) and 
    (`references/typography.md`); horizontal, stacked, symbol-only, wordmark-only — lock relative sizes and spacing.
 4. **Presentation board** with industry-relevant mockups: `presentation_board.py` (copy
    `templates/presentation-spec.example.json`; set `"industry"` or an explicit `"mockups"` list — a café gets cups and
-   bags, a dev tool gets a README and terminal). Guidance: `references/presentation-delivery.md`.
+   bags, a dev tool gets a README and terminal). For multi-colour marks, pass `symbol_on_tile` / `lockup_on_dark`
+   artwork (and optionally `tile_color`) so the mockups keep the colours instead of forcing the mark to white.
+   `--png-dir slides` exports every slide as an image for sharing. Guidance: `references/presentation-delivery.md`.
 5. **Export the files**:
    ```bash
    python3 scripts/export_variants.py final-symbol.svg --title "Brand logo" --mono "#HEX" --icon-bg "#HEX" --web-icons --favicon-source final-symbol-small.svg

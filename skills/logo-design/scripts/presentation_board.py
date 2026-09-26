@@ -25,6 +25,10 @@ spec.json (paths relative to the spec file; see templates/presentation-spec.exam
   "recommendation": "…"
 }
 Each concept needs at least one of symbol / lockup / avatar; "stacked" (optional) is used on bags, signs and badges.
+Optional colour artwork (otherwise the mark is forced to white on those surfaces):
+  "symbol_on_tile" / "stacked_on_tile" (or "lockup_on_tile") — for brand-colour tiles (cards, app icon, cup, shirt, bag);
+  "symbol_on_dark" / "lockup_on_dark" / "stacked_on_dark" — for the near-black signage, README, terminal and reversed strip.
+Top-level "tile_color" overrides brand_color for the tiles (e.g. a dark ink so a bright second colour can show).
 Missing ones fall back sensibly
 (a wordmark-only concept can provide just "lockup" plus an "avatar" for small uses).
 """
@@ -141,17 +145,24 @@ def mock_html(kind, c):
     """c: dict with sym, lock, avatar, color, cls, name, tag, nav."""
     sym, lock, av, cls, name, tag = c["sym"], c["lock"], c["avatar"], c["cls"], c["name"], c["tag"]
     stack = c.get("stacked") or lock   # stacked lockup for tall/boxy surfaces (bags, signs, badges) when provided
+    # Artwork on brand-colour tiles ("on_tile") and on the fixed near-black surfaces ("on_dark"): use the dedicated
+    # colour files when given (keeps multi-colour marks), otherwise force the mark to white.
+    avt, wat = (c["avatar_tile"], "") if c.get("avatar_tile") else (av, "w")
+    avd, wav = (c["avatar_dark"], "") if c.get("avatar_dark") else (av, "w")
+    skt, wst = (c["stack_tile"], "") if c.get("stack_tile") else (stack, "w")
+    lkd, wlk = (c["lock_dark"], "") if c.get("lock_dark") else (lock, "w")
+    skd, wsk = ((c.get("stack_dark") or c["lock_dark"]), "") if (c.get("stack_dark") or c.get("lock_dark")) else (stack, "w")
     tile = c["tile"]
     handle = html.escape(name.lower().replace(" ", ""))
     n = html.escape(name)
     if kind == "business-card":
         return (f'<div class="m" style="background:#d9d4cb"><div class="bc"><img class="{cls}" src="{lock}" style="max-height:34px;max-width:170px">'
                 f'<div class="t"><b>Alex Morgan</b><br>Founder<br>alex@{handle}.com</div></div>'
-                f'<div class="bc2" style="background:{tile}"><img class="w" src="{av}" style="max-height:60px;max-width:120px"></div><span class="lbl">Business cards</span></div>')
+                f'<div class="bc2" style="background:{tile}"><img class="{wat}" src="{avt}" style="max-height:60px;max-width:120px"></div><span class="lbl">Business cards</span></div>')
     if kind == "app-icon":
         cells = "".join('<div class="ai"></div>' for _ in range(4))
         icon = (f'<div class="ai" style="background:{tile};display:flex;align-items:center;justify-content:center">'
-                f'<img class="w" src="{av}" style="max-height:20px;max-width:22px"></div>')
+                f'<img class="{wat}" src="{avt}" style="max-height:20px;max-width:22px"></div>')
         return (f'<div class="m" style="background:#eef0f2"><div class="phone"><div class="screen">{cells}{icon}'
                 + "".join('<div class="ai"></div>' for _ in range(7)) + '</div></div><span class="lbl">App icon</span></div>')
     if kind == "website":
@@ -161,7 +172,7 @@ def mock_html(kind, c):
                 f'<div class="hero2"><b>{html.escape(tag) or n}</b><span></span><span style="width:60%"></span></div></div><span class="lbl">Website</span></div>')
     if kind == "signage":
         return (f'<div class="m" style="background:#b9bcc0"><div class="sign"><div class="board" style="background:#161616">'
-                f'<img class="w" src="{stack}" style="max-height:{58 if stack != lock else 34}px;max-width:190px"></div><div class="door"></div></div><span class="lbl">Storefront / signage</span></div>')
+                f'<img class="{wsk}" src="{skd}" style="max-height:{58 if stack != lock else 34}px;max-width:190px"></div><div class="door"></div></div><span class="lbl">Storefront / signage</span></div>')
     if kind == "tote":
         return (f'<div class="m" style="background:#cfc6b6"><div class="tote"><img class="k" src="{av}" style="max-height:80px;max-width:110px;opacity:.88"></div>'
                 '<span class="lbl">Tote bag</span></div>')
@@ -171,25 +182,25 @@ def mock_html(kind, c):
                 f'<div class="meta"><b>{n}</b>@{handle} · {html.escape(tag)}</div></div><span class="lbl">Social profile</span></div>')
     if kind == "cup":
         return (f'<div class="m" style="background:#d8cfc2"><div class="cup"><div class="lid"></div><div class="body"></div>'
-                f'<div class="sleeve" style="background:{tile}"><img class="w" src="{av}" style="max-height:44px;max-width:80px"></div></div>'
+                f'<div class="sleeve" style="background:{tile}"><img class="{wat}" src="{avt}" style="max-height:44px;max-width:80px"></div></div>'
                 '<span class="lbl">Paper cup</span></div>')
     if kind == "bag":
         return (f'<div class="m" style="background:#cdbfa9"><div class="bag"><div class="label"><img class="{cls}" src="{av}" style="max-height:60px;max-width:84px"></div>'
                 f'<img class="{cls}" src="{lock}" style="max-height:18px;max-width:120px"><div class="t">{html.escape(tag)[:40]}</div></div>'
                 '<span class="lbl">Packaging bag</span></div>')
     if kind == "shopping-bag":
-        return (f'<div class="m" style="background:#e3ded6"><div class="sbag" style="background:{tile}"><img class="w" src="{stack}" style="max-height:{96 if stack != lock else 40}px;max-width:130px"></div>'
+        return (f'<div class="m" style="background:#e3ded6"><div class="sbag" style="background:{tile}"><img class="{wst}" src="{skt}" style="max-height:{96 if stack != lock else 40}px;max-width:130px"></div>'
                 '<span class="lbl">Shopping bag</span></div>')
     if kind == "box":
         return (f'<div class="m" style="background:#d6d9dc"><div class="box"><img class="{cls}" src="{lock}" style="max-height:44px;max-width:160px"></div>'
                 '<span class="lbl">Packaging</span></div>')
     if kind == "readme":
-        return (f'<div class="m" style="background:#e6e8eb"><div class="readme"><div class="rh"><img class="w" src="{lock}" style="max-height:26px;max-width:180px"></div>'
+        return (f'<div class="m" style="background:#e6e8eb"><div class="readme"><div class="rh"><img class="{wlk}" src="{lkd}" style="max-height:26px;max-width:180px"></div>'
                 f'<div>{html.escape(tag) or n}</div><div class="badges"><i></i><i></i><i></i></div><div class="ln"></div><div class="ln" style="width:70%"></div>'
                 '<div class="ln" style="width:85%"></div></div><span class="lbl">GitHub README</span></div>')
     if kind == "terminal":
         return (f'<div class="m" style="background:#cfd3d8"><div class="term"><div class="tb"><i></i><i></i><i></i></div>'
-                f'<div class="tbody"><img class="w" src="{av}" style="max-height:42px;max-width:42px"><div>$ {handle} --version<br>'
+                f'<div class="tbody"><img class="{wav}" src="{avd}" style="max-height:42px;max-width:42px"><div>$ {handle} --version<br>'
                 f'<span style="color:#6a9955">{n} 1.0.0</span><br>$ {handle} search "error"</div></div></div><span class="lbl">Terminal</span></div>')
     if kind == "sticker":
         return (f'<div class="m" style="background:#e1e3e6"><div class="sticker"><div class="s"><img class="{cls}" src="{av}" style="max-height:58px;max-width:66px"></div></div>'
@@ -197,7 +208,7 @@ def mock_html(kind, c):
     if kind == "tshirt":
         shirt = ('<svg viewBox="0 0 210 220"><path d="M60 10 L20 35 L0 80 L35 95 L45 75 L45 215 L165 215 L165 75 L175 95 L210 80 '
                  f'L190 35 L150 10 Q105 40 60 10 Z" fill="{tile}"/></svg>')
-        return (f'<div class="m" style="background:#e4e1dc"><div class="shirt">{shirt}<img class="w" src="{av}" style="position:relative;max-height:56px;max-width:70px;margin-top:10px"></div>'
+        return (f'<div class="m" style="background:#e4e1dc"><div class="shirt">{shirt}<img class="{wat}" src="{avt}" style="position:relative;max-height:56px;max-width:70px;margin-top:10px"></div>'
                 '<span class="lbl">T-shirt</span></div>')
     if kind == "badge":
         return (f'<div class="m" style="background:#d9dde2"><div class="badge"><div class="hole"></div><img class="{cls}" src="{stack}" style="max-height:{70 if stack != lock else 34}px;max-width:130px">'
@@ -245,7 +256,7 @@ def main():
     grey = spec.get("greyscale", True)
     final = spec.get("final", False)
     cls = "g" if grey else ""
-    tile = "#161616" if grey else color
+    tile = "#161616" if grey else (spec.get("tile_color") or color)
     date = spec.get("date") or datetime.date.today().isoformat()
     designer = spec.get("designer", "")
     concepts = spec.get("concepts", [])
@@ -290,6 +301,15 @@ def main():
         lock = uri(c.get("lockup") or c.get("symbol") or c.get("avatar"), base)
         av = uri(c.get("avatar") or c.get("symbol") or c.get("lockup"), base)
         stacked = uri(c["stacked"], base) if c.get("stacked") else None
+        dark = {}
+        if not grey:
+            pick = lambda *keys: next((c[k] for k in keys if c.get(k)), None)
+            for k, src in (("avatar_tile", pick("symbol_on_tile", "symbol_on_dark")),
+                           ("stack_tile", pick("stacked_on_tile", "lockup_on_tile")),
+                           ("avatar_dark", pick("symbol_on_dark")), ("lock_dark", pick("lockup_on_dark")),
+                           ("stack_dark", pick("stacked_on_dark"))):
+                if src:
+                    dark[k] = uri(src, base)
         items.append((c, sym, lock))
         label = spec.get("label") or ((custom_title.capitalize() if custom_title else "Final design") if final
                                       else f"Concept {chr(65 + i)}")
@@ -298,10 +318,10 @@ def main():
         slides.append(f"""<section class="slide"><div class="kicker">{label}</div><h2>{html.escape(c.get('name', ''))}</h2>
 <p class="idea">{html.escape(c.get('idea', ''))}</p>
 <div class="hero"><div class="stage"><img class="{cls}" src="{lock}"></div>
-<div><ul class="rat">{rat}</ul><div class="sizes">{sizes}</div><div class="rev"><img class="w" src="{lock}" style="max-height:44px;max-width:300px"></div></div></div>
+<div><ul class="rat">{rat}</ul><div class="sizes">{sizes}</div><div class="rev"><img class="{'' if (c.get('lockup_on_dark') and not grey) else 'w'}" src="{uri(c['lockup_on_dark'], base) if (c.get('lockup_on_dark') and not grey) else lock}" style="max-height:44px;max-width:300px"></div></div></div>
 {foot(len(slides) + 1)}</section>""")
         ctx = {"sym": sym, "lock": lock, "avatar": av, "cls": cls, "name": brand, "tag": spec.get("tagline", ""),
-               "tile": tile, "nav": nav, "stacked": stacked}
+               "tile": tile, "nav": nav, "stacked": stacked, **dark}
         cells = "".join(mock_html(k, ctx) for k in mockups)
         slides.append(f"""<section class="slide"><div class="kicker">{label} · in use</div><h2>{html.escape(c.get('name', ''))}</h2>
 <div class="mock">{cells}</div>{foot(len(slides) + 1)}</section>""")
