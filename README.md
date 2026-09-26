@@ -32,6 +32,7 @@ skills/logo-design/
 │   ├── redesign.md · critique.md
 │   └── library-guide.md         # library contents, data insights, curated examples by technique
 ├── scripts/
+│   ├── concept_sheet.py         # one-image concept overview shown before any kit is built
 │   ├── search_library.py        # query the 1,432-logo library (filters, --summary, --format paths)
 │   ├── svg_audit.py             # structure, colours, complexity, near-miss angles, tiny details, centring
 │   ├── preview_sheet.py         # HTML test sheet (sizes, backgrounds, treatments, contexts, shelf test)
@@ -78,8 +79,9 @@ Just ask — the skill triggers on logo, wordmark, monogram, brand mark, app ico
 > *"Turn this symbol into favicon, app icon and one-colour versions, plus a one-page usage guide."*
 
 Typical flow: brief → category research in the library → 8–12 one-sentence concepts → three built as SVG (black
-first) → audit + visual test sheet → refinement → greyscale presentation → colour, type and lockups → export variants
-and guidelines.
+first) → audit + visual test sheet → refinement → **the skill shows you the concepts as one overview image and stops**
+→ you pick a direction → on request, it builds the full kit: colour, lockups, presentation board, favicon/app-icon
+set, variants and a usage guide.
 
 Tools can also be run directly:
 ```bash

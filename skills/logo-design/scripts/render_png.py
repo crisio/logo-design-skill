@@ -131,22 +131,23 @@ def _chrome(svg_file, png, w, h):
             f"<body><img src='data:image/svg+xml;base64,{data}'></body></html>")
     with tempfile.TemporaryDirectory() as tmp:
         html_path = os.path.join(tmp, "render.html")
+        shot = os.path.join(tmp, "shot.png")  # never poll the destination: an older file may already exist there
         with open(html_path, "w", encoding="utf-8") as fh:
             fh.write(page)
         cmd = [chrome, "--headless=new", "--disable-gpu", "--hide-scrollbars", "--no-first-run",
                "--no-default-browser-check", "--use-mock-keychain", "--password-store=basic", "--disable-extensions",
-               "--default-background-color=00000000", f"--window-size={w},{h}", f"--screenshot={os.path.abspath(png)}",
+               "--default-background-color=00000000", f"--window-size={w},{h}", f"--screenshot={shot}",
                f"--user-data-dir={os.path.join(tmp, 'profile')}", "file://" + html_path]
         proc = subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         deadline = time.time() + 45
         last = -1
         while time.time() < deadline:
-            if os.path.exists(png):
-                size = os.path.getsize(png)
+            if os.path.exists(shot):
+                size = os.path.getsize(shot)
                 if size > 0 and size == last:
                     break
                 last = size
-            if proc.poll() is not None and os.path.exists(png):
+            if proc.poll() is not None and os.path.exists(shot):
                 break
             time.sleep(0.25)
         if proc.poll() is None:
@@ -155,8 +156,9 @@ def _chrome(svg_file, png, w, h):
                 proc.wait(timeout=5)
             except subprocess.TimeoutExpired:
                 proc.kill()
-    if not os.path.exists(png):
-        raise RuntimeError("chrome produced no file")
+        if not os.path.exists(shot):
+            raise RuntimeError("chrome produced no file")
+        shutil.move(shot, png)
 
 
 def _qlmanage_once(svg_markup, w, h, tmp, name):

@@ -23,7 +23,7 @@ human designer with a sketchbook. SKILL.md gives the short version; read this fo
 | Concepting | Word map, 6–10 one-sentence concepts | Concepts are distinct and on-brief |
 | Exploration | Many rough forms per concept | 2–4 directions worth developing |
 | Development | Clean black vector versions of 3 concepts | Presentable at ~80 % finish |
-| Presentation 1 | 3 concepts in greyscale + context mockups | One direction chosen |
+| Presentation 1 (checkpoint) | 3 concepts in greyscale as one overview image + kit offer | User picks a direction and asks for the kit |
 | Refinement | Optical corrections, gridding, colour, type, lockups | Approved final mark |
 | System & applications | Palette, typefaces, variants, patterns, key applications | System approved |
 | Production | Final files, specifications, guidelines | Delivered; audit plan |

@@ -25,10 +25,13 @@ Reply in the user's language. Keep the process visible but light: short explanat
 (`references/discovery-brief.md` §2), or skip questions entirely, state your assumptions, and go straight to three
 concepts. You can always iterate after they react.
 
-**Single-turn delivery** (the user can't answer, or asked for everything at once): you can't run separate rounds, so
-compress them honestly — show the three concepts in greyscale first, then a clearly labelled *colour proposal* for
-each (or at least for your recommendation), and export variants only for the recommended direction, marked
-"proposal, pending approval". Say which decisions you made on the user's behalf.
+**Concept checkpoint — show the logos before building anything else.** Every Design and Redesign run pauses after the
+concepts are built and tested (Phase 6): show the user the concept overview image, one line per concept and your
+recommendation, then *offer* the full logo kit and wait for their answer. Build the kit (Phase 7) only after they pick a
+direction and say yes. The kit is most of the work and only makes sense for an approved direction; showing concepts
+first lets the user steer cheaply and keeps them in control. Skip the pause only when the user explicitly says not to
+check in (e.g. "don't ask, just deliver everything"). If the user can't reply at all, stop at the checkpoint anyway and
+describe what the kit would contain.
 
 ## Tools in this skill
 
@@ -38,6 +41,7 @@ All scripts are dependency-free Python 3 and live in this skill's `scripts/` fol
 
 | Script | Use it to |
 |---|---|
+| `concept_sheet.py` | One-image concept overview (large mark, lockup, true 64/32/16 px sizes, name, one-line idea, recommendation) — what you show at the checkpoint |
 | `search_library.py` | Find reference logos by `--type`, `--technique`, `--geometry`, `--subject`, `--industry`, `--color`, `--mood`…; `--summary` shows a category's conventions; `--format paths` gives files to read |
 | `svg_audit.py` | Check an SVG: live text, rasters, filters, colour count, gradients, strokes, near-miss angles, tiny details, centring, complexity vs. the library |
 | `preview_sheet.py` | HTML test sheet: size ladder, 16/32 px pixel test, backgrounds, one-colour, squint blur, mirror/rotate, favicon/app-icon/header/card contexts, side-by-side, shelf test vs. competitors |
@@ -109,29 +113,39 @@ Open and look. Fix what fails, then re-run. Key refinements (details in `referen
   push it further or drop it.
 Full list: `references/testing-checklist.md`.
 
-### Phase 6 — Present three concepts
-Greyscale first (colour triggers taste debates). For each: name, one-sentence idea, 2–4 reasons tied to the brief,
-the mark large, small and reversed, and realistic mockups. Then a side-by-side and your recommendation.
-Generate a board with `presentation_board.py` (copy `templates/presentation-spec.example.json`; set `"industry"`
-or an explicit `"mockups"` list so the contexts fit the business — a café gets cups and bags, a dev tool gets a README
-and terminal), or present in chat using the format below. Guidance: `references/presentation-delivery.md`.
-
-### Phase 7 — Colour, type, lockups (after a direction is chosen)
-- Colour: 1–2 colours ideally, ownable in the category, reproducible (HEX/RGB/CMYK/Pantone), accessible; check the
-  one-colour and greyscale versions still work (`references/color.md`).
-- Typography: type study, customise letters for ownership, optical spacing, max two families
-  (`references/typography.md`).
-- Lockups: horizontal, stacked, symbol-only, wordmark-only; lock relative sizes and spacing.
-
-### Phase 8 — Deliver
+### Phase 6 — Show the concepts, then stop (checkpoint)
 ```bash
-python3 scripts/export_variants.py final-symbol.svg --title "Brand logo" --mono "#HEX" --icon-bg "#HEX" --web-icons
-python3 scripts/export_variants.py final-horizontal.svg --title "Brand logo" --only black white mono --mono "#HEX" --png 1200
+python3 scripts/concept_sheet.py a-symbol.svg b-symbol.svg c-symbol.svg --lockups a-lockup.svg b-lockup.svg c-lockup.svg \
+    --names "Name A" "Name B" "Name C" --notes "One-line idea A" "…" "…" --recommend 1 --greyscale -o concepts.png
 ```
-Deliver: masters (SVG; PDF/AI/EPS if the user has the tools), variants, favicon/app icon, compact guidelines
-(`templates/brand-guidelines-template.md`: clear space from a logo element, minimum sizes, colour codes, approved
-backgrounds, misuse), and handover notes (rationale, test results, open items). Run the final checklist in
-`references/process.md` §7. For bigger brands, extend into a system (`references/identity-system.md`).
+View the image yourself, then show it to the user (attach or display the PNG; if you can't share files, give the
+path) with the chat format below. Greyscale first — colour triggers taste debates; you may add a small colour hint
+for your recommendation. End with the kit offer and **wait for the answer**:
+
+> Want me to prepare the full logo kit for the direction you choose? It includes: the colour palette with one-colour
+> and reversed versions, horizontal and stacked lockups, a small-size cut, favicon + app-icon + web-icon set, a
+> presentation board with mockups for your industry, and a one-page usage guide.
+
+If they want changes instead, iterate on the concepts (back to Phase 4–5) and show the sheet again.
+
+### Phase 7 — Build the kit (only after the user says yes)
+1. **Refine the chosen direction**: final geometry, optical corrections, small-size cut, thinned reversed version.
+2. **Colour**: 1–2 colours ideally, ownable in the category, reproducible (HEX/RGB/CMYK/Pantone), accessible; the
+   one-colour and greyscale versions must still work (`references/color.md`).
+3. **Typography & lockups**: type study, custom letters for ownership, optical spacing, max two families
+   (`references/typography.md`); horizontal, stacked, symbol-only, wordmark-only — lock relative sizes and spacing.
+4. **Presentation board** with industry-relevant mockups: `presentation_board.py` (copy
+   `templates/presentation-spec.example.json`; set `"industry"` or an explicit `"mockups"` list — a café gets cups and
+   bags, a dev tool gets a README and terminal). Guidance: `references/presentation-delivery.md`.
+5. **Export the files**:
+   ```bash
+   python3 scripts/export_variants.py final-symbol.svg --title "Brand logo" --mono "#HEX" --icon-bg "#HEX" --web-icons --favicon-source final-symbol-small.svg
+   python3 scripts/export_variants.py final-horizontal.svg --title "Brand logo" --only black white mono --mono "#HEX" --png 1200
+   ```
+6. **Guidelines & handover**: compact guidelines (`templates/brand-guidelines-template.md`: clear space from a logo
+   element, minimum sizes, colour codes, approved backgrounds, misuse), masters (SVG; PDF/AI/EPS if the user has the
+   tools), and handover notes (rationale, test results, open items). Run the final checklist in `references/process.md`
+   §7. For bigger brands, extend into a system (`references/identity-system.md`).
 
 ## Principles to hold onto
 
@@ -160,16 +174,22 @@ Deeper reasoning: `references/principles.md`.
 - A concept that needs a paragraph to understand.
 - Anything that looks like an existing logo — including the library's. The library is for learning, never tracing.
 
-## Presenting concepts in chat
+## Presenting concepts in chat (the checkpoint message)
 
 ```markdown
-### Concept A — <Name>  ·  <mark type>
+<concept overview image>
+
+### A — <Name>  ·  <mark type>   ← recommended
 **Idea:** <one sentence>
-**Why it fits:** <2–4 bullets linked to the brief's adjectives/audience/competition>
-**Craft notes:** <grid, geometry, key corrections — one line>
-**Files:** `concept-a.svg` (+ preview: `preview.html`)
+**Why it fits:** <2–3 bullets linked to the brief's adjectives/audience/competition>
+
+### B — … / ### C — …  (same shape)
+
+**My recommendation:** <one or two sentences, including one honest risk per concept if relevant>
+**Next:** pick a direction (or tell me what you like in each). Want me to prepare the full logo kit for it?
+<one-line list of what the kit contains>
 ```
-End with a short comparison and a recommendation, then ask for a decision or reactions ("what do you like in each?").
+Keep it short: the image does the work. Don't attach variants, boards or icon sets yet.
 
 ## Honesty and limits
 

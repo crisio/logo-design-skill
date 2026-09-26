@@ -16,15 +16,17 @@ to deliver at the end. Also covers the working relationship (fees, spec work, ri
 ## 1. Presentation rounds
 
 A typical project has three presentations:
-1. **Concepts** — three distinct directions at ~80 % finish, **in greyscale**, each with a one-sentence idea,
-   a short rationale tied to the brief, and 5–6 realistic mockups. Goal: choose a direction.
+1. **Concepts (the checkpoint)** — three distinct directions at ~80 % finish, **in greyscale**, each with a one-sentence
+   idea and a short rationale tied to the brief, shown as one overview image (`scripts/concept_sheet.py`). End by
+   offering the full kit and wait. Goal: choose a direction. Nothing else is produced before this answer.
 2. **Refinement** — the chosen direction refined (optical corrections, type, lockups) with **colour** options,
-   researched against competitors' palettes.
-3. **Final** — the approved mark with the system (palette, typography, variants), key applications and the file set.
+   researched against competitors' palettes, shown in context with mockups (`scripts/presentation_board.py`).
+3. **Final kit** — the approved mark with the system (palette, typography, variants), key applications, the file set
+   and the usage guide.
 
-**Single-turn delivery** (no chance for rounds): present the greyscale concepts first, then a clearly labelled colour
-proposal per concept (or for the recommended one), and export variants for the recommendation only, marked as a
-proposal pending approval. State which choices you made on the user's behalf.
+In a chat with an AI designer, rounds 2 and 3 are often merged: once the user approves a direction and asks for the
+kit, deliver the refined mark, colour, lockups, board, exports and guidelines together. Never merge round 1 into the
+others unless the user explicitly asked you not to check in.
 
 Why three concepts? Enough for a real choice, few enough to develop properly. Three well-developed concepts beat a
 dozen half-developed ones, and showing too many signals a lack of conviction. Make the three genuinely different
@@ -35,7 +37,8 @@ Form must stand on its own.
 
 ## 2. Structure of a concept presentation
 
-Use `scripts/presentation_board.py` to generate an HTML board — set `"industry"` (coffee, food, retail, fashion, software, consumer-app, services, event, education, health) or an explicit `"mockups"` list so every context fits the business (`--list-mockups` shows all) — or follow this outline in chat/slides:
+For the checkpoint, the concept overview image plus a short chat message is enough (see SKILL.md). For a fuller
+client presentation (round 2, or when the user asks for one), use `scripts/presentation_board.py` to generate an HTML board — set `"industry"` (coffee, food, retail, fashion, software, consumer-app, services, event, education, health) or an explicit `"mockups"` list so every context fits the business (`--list-mockups` shows all) — or follow this outline in chat/slides:
 
 1. **Title** — client, project, date, designer(s).
 2. **What we heard** — the brief in a few lines: audience, adjectives, the problem, success criteria. This reminds
