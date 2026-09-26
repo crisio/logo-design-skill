@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Search the bundled reference library of 1,432 real-world SVG logos.
+"""Search the bundled reference library of 1,400+ real-world SVG logos.
 
 Use it to study how existing marks solve a problem (a technique, a subject, a mark type), to see what a
 category already looks like (so you can avoid it), and to pull a handful of files to read as SVG examples.

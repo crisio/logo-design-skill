@@ -1,6 +1,6 @@
 ---
 name: logo-design
-description: Professional logo and brand-mark design, from brief to production files. Guides discovery and the design brief, concept generation, choosing a mark type (wordmark, monogram, letterform, pictorial, abstract, emblem, mascot, combination), building clean geometric SVG logos, optical refinement, colour and typography, testing (16 px, one-colour, reversed, shelf test), client presentation, delivery variants and brand guidelines. Includes a searchable library of 1,432 real-world SVG logos classified by type, technique, geometry and industry, plus scripts that audit SVGs and generate test sheets, presentation boards and export variants. Use this skill whenever the user wants a logo, logotype, wordmark, monogram, brand mark, symbol, app icon or favicon designed, redesigned, refreshed, critiqued or compared; asks for logo ideas or concepts; needs a design brief, logo guidelines, lockups or an identity system; or mentions branding a new company, product, app or project — even if they don't say the word "logo".
+description: Professional logo and brand-mark design, from brief to production files. Guides discovery and the design brief, concept generation, choosing a mark type (wordmark, monogram, letterform, pictorial, abstract, emblem, mascot, combination), building clean geometric SVG logos, optical refinement, colour and typography, testing (16 px, one-colour, reversed, shelf test), client presentation, delivery variants and brand guidelines. Includes a searchable library of 1,400+ real-world SVG logos classified by type, technique, geometry and industry, plus scripts that audit SVGs and generate test sheets, presentation boards and export variants. Use this skill whenever the user wants a logo, logotype, wordmark, monogram, brand mark, symbol, app icon or favicon designed, redesigned, refreshed, critiqued or compared; asks for logo ideas or concepts; needs a design brief, logo guidelines, lockups or an identity system; or mentions branding a new company, product, app or project — even if they don't say the word "logo".
 ---
 
 # Logo Design
@@ -217,4 +217,4 @@ Keep it short: the image does the work. Don't attach variants, boards or icon se
 | `references/identity-system.md` | Kit of parts, sub-brands, dynamic identities, patterns, motion, guidelines, rollout |
 | `references/redesign.md` | Refresh vs. rebrand, equity audit, refresh techniques |
 | `references/critique.md` | Structured logo critique with scorecard and fixes |
-| `references/library-guide.md` | What's in the 1,432-logo library, insights, curated examples by technique |
+| `references/library-guide.md` | What's in the 1,400+ logo library, insights, curated examples by technique |

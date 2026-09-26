@@ -1,6 +1,6 @@
 # The Reference Library — Guide & Insights
 
-The skill ships with **1,432 real-world SVG logos** (≈1,200 brands; 233 brands include both a full lockup and a
+The skill ships with **1,400+ real-world SVG logos** (≈1,200 brands; 233 brands include both a full lockup and a
 standalone `-icon` symbol), each visually classified by mark type, technique, geometry, subject, typography, mood and
 industry. Use it to learn *how* marks are built and to see what a category already looks like.
 
@@ -20,7 +20,7 @@ industry. Use it to learn *how* marks are built and to see what a category alrea
 
 ```
 assets/library/
-  svg/                  1,432 logo files (brand.svg = full logo, brand-icon.svg = standalone symbol)
+  svg/                  1,400+ logo files (brand.svg = full logo, brand-icon.svg = standalone symbol)
   catalog.json          one record per file: structure + colours + complexity + visual classification
   classifications.json  the visual labels (source of truth for mark_type, techniques, subject, …)
   stats.json            distributions used by svg_audit.py (anchors, colours, types …)

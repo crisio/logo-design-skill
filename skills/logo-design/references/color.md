@@ -105,7 +105,7 @@ Use the colour wheel as a generator, then refine by eye:
   greyscale version: segments should still separate by value.
 - Yellow, light cyan and pale pastels on white fail contrast; give them a dark companion or a dark version.
 
-## 8. Library data (1,432 real-world logos)
+## 8. Library data (1,400+ real-world logos)
 
 The bundled library skews heavily to technology brands, so treat these as *category conventions to be aware of*,
 not recommendations:

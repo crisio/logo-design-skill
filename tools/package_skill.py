@@ -3,7 +3,7 @@
 
   python tools/package_skill.py          # dist/logo-design.zip (full) + dist/logo-design-lite.zip
 
-The lite package leaves out the 1,432 SVG files and gallery.html (catalog metadata, scripts and all
+The lite package leaves out the 1,400+ SVG files and gallery.html (catalog metadata, scripts and all
 references are kept) for platforms with upload size limits.
 """
 import os

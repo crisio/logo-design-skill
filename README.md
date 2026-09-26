@@ -8,7 +8,7 @@ brief to production-ready SVG files and brand guidelines.
 - **Principles & process** — discovery and briefs, word mapping, choosing the right mark type, concepting,
   geometric construction, optical corrections (overshoot, bone effect, irradiation…), colour, typography, lockups,
   testing, presentation, delivery, redesigns and identity systems.
-- **A reference library of 1,432 real-world SVG logos**, each visually classified by mark type, technique,
+- **A reference library of 1,400+ real-world SVG logos**, each visually classified by mark type, technique,
   geometry, subject, typography, mood and industry — searchable from the command line and browsable in a local
   gallery. Used to study construction, map category conventions and avoid look-alikes (never to copy).
 - **Dependency-free Python tools** — audit an SVG against logo principles, build concept overview sheets and test
@@ -327,7 +327,7 @@ skills/logo-design/
 │   └── library-guide.md         # library contents, data insights, curated examples by technique
 ├── scripts/
 │   ├── concept_sheet.py         # one-image concept overview shown at the checkpoint
-│   ├── search_library.py        # query the 1,432-logo library (filters, --summary, --format paths)
+│   ├── search_library.py        # query the 1,400+ logo library (filters, --summary, --format paths)
 │   ├── svg_audit.py             # structure, colours, complexity, near-miss angles, tiny details, centring
 │   ├── preview_sheet.py         # HTML test sheet (sizes, backgrounds, treatments, contexts, shelf test)
 │   ├── presentation_board.py    # client presentation with six industry-specific mockups per concept
@@ -335,12 +335,12 @@ skills/logo-design/
 │   ├── export_variants.py       # black / white / mono / square / favicon / app-icon, PNGs, full web-icon set
 │   └── build_catalog.py         # maintainers: rebuild catalog, stats and gallery
 ├── templates/                   # brand-guidelines template, presentation spec example
-└── assets/library/              # svg/ (1,432 files), catalog.json, classifications.json, stats.json, gallery.html
+└── assets/library/              # svg/ (1,400+ files), catalog.json, classifications.json, stats.json, gallery.html
 ```
 
 ## Library at a glance
 
-1,432 files · ≈1,200 brands · 233 brands with both a lockup and a standalone icon · mark types: abstract 24 %,
+1,400+ files · ≈1,200 brands · 233 brands with both a lockup and a standalone icon · mark types: abstract 24 %,
 combination 21 %, pictorial 20 %, letterform 15 %, wordmark 10 %, emblem 4 %, mascot 4 %, lettermark 3 % · median
 2 colours, 75 % use ≤ 3 · gradients in 19 % · 141 flagged as exemplary teaching examples. More in
 [`references/library-guide.md`](skills/logo-design/references/library-guide.md).
