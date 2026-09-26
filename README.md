@@ -1,6 +1,6 @@
 # Logo Design Skill for Claude
 
-![Eleven example runs of the logo-design skill](docs/images/hero.png)
+![Eighteen example runs of the logo-design skill](docs/images/hero.png)
 
 A comprehensive **logo-design skill** that turns Claude into a disciplined identity designer — from the first
 brief to production-ready SVG files and brand guidelines.
@@ -41,11 +41,12 @@ makes sense for an approved idea.
 
 ## Examples
 
-Eleven fictional briefs across eleven sectors, from quiet luxury to neon festival — each run end to end with the
-skill. For every brand you see exactly what the skill shows at the checkpoint (greyscale concepts with true
-64/32/16 px sizes and a recommendation), followed by a colour preview of the chosen direction on mockups picked for
-that industry. The second batch deliberately pushes **vivid, saturated palettes** — while still passing the
-one-colour and 3 : 1 contrast checks.
+Eighteen fictional briefs, from quiet luxury and neon festivals to B2B SaaS, fintech and health — each run end to
+end with the skill. For every brand you see exactly what the skill shows at the checkpoint (greyscale concepts with
+true 64/32/16 px sizes and a recommendation), followed by a colour preview of the chosen direction on mockups picked
+for that industry. Later batches deliberately push **vivid, saturated palettes** while still passing the one-colour
+and 3 : 1 contrast checks. The newest batch takes on three crowded categories: **SaaS** (no chat bubbles, charts or
+padlocks), **finance** (no coins, piggy banks or bank blue) and **health** (no crosses, pills or heartbeat lines).
 
 | Brand | Sector | Style | Chosen mark |
 |---|---|---|---|
@@ -60,6 +61,13 @@ one-colour and 3 : 1 contrast checks.
 | [Calmera](#calmera--physiotherapy-clinic) | Physiotherapy | Soft, organic, calm | Pictorial symbol |
 | [Bramble Vet](#bramble-vet--veterinary-clinic) | Veterinary | Friendly character, sunny | Mascot |
 | [Voltra](#voltra--solar-energy) | Clean energy | Geometric, volt orange | Abstract symbol |
+| [Keyfort](#keyfort--password-manager) | Security SaaS | Strict grid, electric indigo & mint | Abstract symbol |
+| [Relaydesk](#relaydesk--customer-support-saas) | Support SaaS | Rounded, violet & coral | Abstract symbol |
+| [Tracelane](#tracelane--product-analytics) | Developer analytics | Technical, acid & pink on carbon | Letterform |
+| [Tallybook](#tallybook--invoicing--bookkeeping) | Small-business finance | Friendly, tangerine & teal | Letterform |
+| [Northvault](#northvault--digital-bank-for-freelancers) | Digital banking | Bold tile, hot magenta | Letterform |
+| [Mediora](#mediora--telehealth-app) | Telehealth | Soft, coral face on teal | Mascot |
+| [Brightdose](#brightdose--online-pharmacy) | Online pharmacy | Sunny yellow & cobalt | Letterform |
 
 ### Kiln — specialty coffee roaster
 *Small-batch roaster in Istanbul: warm, crafted and modern — not rustic cliché. Must work on bags, cups and an Instagram avatar.*
@@ -159,6 +167,69 @@ one-colour and 3 : 1 contrast checks.
 **Recommended: Sun Dock** — the sun docks into a battery shaped to hold it, and the gap between them is a crescent moon: *sunshine, after dark*. Volt orange with night navy. A "charge-level o" was dropped because it read as *veltra*.
 
 ![Voltra in use](docs/images/voltra-board.png)
+
+### Keyfort — password manager
+*Password manager and team-security SaaS with shared vaults, passkeys and access control: secure, calm, strong — no padlocks, shields, keyholes, fingerprints or chain links.*
+
+![Keyfort concepts](docs/images/keyfort-concepts.png)
+
+**Recommended: Greek Key** — one unbroken wall winds inward: a Greek key that is also a fortress with only one way in. Electric indigo sets it apart from the category's azure blues; the innermost turn glows mint only on indigo and dark surfaces, because mint reaches just 1.4 : 1 on white. A star-fort idea was dropped when it read as a shuriken.
+
+![Keyfort in use](docs/images/keyfort-board.png)
+
+### Relaydesk — customer-support SaaS
+*One shared inbox for email, chat and social, with AI that drafts replies and routes tickets: helpful, fast, human — no headsets, robots or speech bubbles.*
+
+![Relaydesk concepts](docs/images/relaydesk-concepts.png)
+
+**Recommended: Hand-off** — two identical hooks catch each other mid-pass, so no ticket is dropped: one radius and one stroke, repeated with a 180° turn. Coral only reaches 2.1 : 1 on violet, so on violet surfaces the mark turns all white. The craft pass snapped the *y* to an exact 60° and opened a hook gap that had shrunk to 1.7 units.
+
+![Relaydesk in use](docs/images/relaydesk-board.png)
+
+### Tracelane — product analytics
+*Event tracking, funnels and session paths for developers, with an SDK and a CLI: precise, fast, insightful — no bar charts, pie charts, magnifying glasses or up-arrows.*
+
+![Tracelane concepts](docs/images/tracelane-concepts.png)
+
+**Recommended: Junction T** — one lane runs straight on and the other turns off to become the stem: the moment a funnel measures, drawn as the brand initial. Acid green on carbon for the terminal and README, with the turning lane always signal pink. Moving the turning lane inward made the T read at first glance.
+
+![Tracelane in use](docs/images/tracelane-board.png)
+
+### Tallybook — invoicing & bookkeeping
+*Invoicing and bookkeeping for small businesses and sole traders: friendly, tidy, reassuring — no calculators, coins, ledgers or charts.*
+
+![Tallybook concepts](docs/images/tallybook-concepts.png)
+
+**Recommended: Bookmark T** — an open book forms the crossbar and its ribbon bookmark forms the stem: your books, always open at the right page. Tangerine with a lagoon-teal ribbon; on tangerine surfaces the ribbon turns ink, because teal and tangerine are nearly equal in luminance and would vibrate.
+
+![Tallybook in use](docs/images/tallybook-board.png)
+
+### Northvault — digital bank for freelancers
+*A business account with self-saving tax pots and instant invoicing: confident, clear, independent — no bank blue, coins, piggy banks, columns or up-arrows.*
+
+![Northvault concepts](docs/images/northvault-concepts.png)
+
+**Recommended: Seam N** — a vault-shaped tile split into two interlocking pots, where the seam between them spells N (and N marks north on every compass). Hot magenta, with electric green kept for dark surfaces only. An electric-green card was tested and dropped because the text on it failed contrast.
+
+![Northvault in use](docs/images/northvault-board.png)
+
+### Mediora — telehealth app
+*Video consultations with a doctor in minutes, e-prescriptions and records in one place: caring, immediate, warm — no crosses, stethoscopes, hearts or pulse lines.*
+
+![Mediora concepts](docs/images/mediora-concepts.png)
+
+**Recommended: Relief** — a circle face with closed, smiling eyes and a listening head-tilt: the relief of being looked after, fast. A coral face on a teal stage, with ink eyes and wordmark. An early *m* concept put its dot top-right, where it read as "mi", so the dot moved down.
+
+![Mediora in use](docs/images/mediora-board.png)
+
+### Brightdose — online pharmacy
+*Repeat prescriptions delivered to your door, with reminders and pharmacist chat: cheerful, reliable, easy — no green crosses, pills, mortar and pestle or rod of Asclepius.*
+
+![Brightdose concepts](docs/images/brightdose-concepts.png)
+
+**Recommended: Sunspot b** — a lowercase *b* that holds a small sun in its counter: a bright spot in every day. Sunrise yellow is rare in a green-and-blue category; on yellow bags and app tiles the whole mark turns one-colour cobalt. Rejected along the way: a seven-bar sun that looked like a helmet and a peel that looked like a moon.
+
+![Brightdose in use](docs/images/brightdose-board.png)
 
 ---
 
