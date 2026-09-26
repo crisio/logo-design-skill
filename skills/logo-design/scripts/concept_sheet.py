@@ -20,6 +20,7 @@ import os
 import re
 import sys
 
+sys.dont_write_bytecode = True  # keep the skill folder clean (no __pycache__)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import render_png  # noqa: E402
 import svglib  # noqa: E402
@@ -74,7 +75,16 @@ def main():
     card_w = (W - 2 * pad - (cols - 1) * gap) / cols
     has_lock = bool(a.lockups)
     art_h = 300
-    lock_h = 120 if has_lock else 0
+    lock_h = 0
+    if has_lock:
+        ratios = []
+        for lp in a.lockups:
+            if lp:
+                vb = svglib.view_box(svglib.load_svg(lp)[1])
+                if vb and vb[3]:
+                    ratios.append(vb[2] / vb[3])
+        # wide lockups fit a short slot; squarish ones (emblems, stacked lockups) need more height
+        lock_h = 120 if not ratios or min(ratios) >= 2.2 else (170 if min(ratios) >= 1.4 else 210)
     card_h = 40 + art_h + (lock_h + 24 if has_lock else 0) + 90 + 150 + (30 if a.recommend else 0) + 20
     header = 150
     H = header + rows * card_h + (rows - 1) * gap + pad

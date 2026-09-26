@@ -23,6 +23,7 @@ import os
 import random
 import sys
 
+sys.dont_write_bytecode = True  # keep the skill folder clean (no __pycache__)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import svglib  # noqa: E402
 

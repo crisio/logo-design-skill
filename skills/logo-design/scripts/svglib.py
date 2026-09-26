@@ -40,8 +40,24 @@ def load_svg(path):
 
 
 def svg_data_uri(path):
+    """Base64 data URI for <img> use. Adds width/height from the viewBox when missing, because browsers give
+    viewBox-only SVGs a default 300×150 box (or none) and they can vanish inside flex/max-height layouts."""
     with open(path, "rb") as fh:
-        return "data:image/svg+xml;base64," + base64.b64encode(fh.read()).decode("ascii")
+        data = fh.read()
+    text = data.decode("utf-8", errors="ignore")
+    m = re.search(r"<svg\b[^>]*>", text)
+    if m:
+        tag = m.group(0)
+        has_w = re.search(r'\swidth\s*=\s*"', tag)
+        has_h = re.search(r'\sheight\s*=\s*"', tag)
+        vb = re.search(r'viewBox\s*=\s*"([^"]+)"', tag)
+        if vb and not (has_w and has_h):
+            parts = [p for p in re.split(r"[ ,]+", vb.group(1).strip()) if p]
+            if len(parts) == 4:
+                new_tag = re.sub(r'\s(width|height)\s*=\s*"[^"]*"', "", tag)
+                new_tag = new_tag[:-1].rstrip("/") + f' width="{parts[2]}" height="{parts[3]}">'
+                data = text.replace(tag, new_tag, 1).encode("utf-8")
+    return "data:image/svg+xml;base64," + base64.b64encode(data).decode("ascii")
 
 
 # ----------------------------------------------------------------------------- colours

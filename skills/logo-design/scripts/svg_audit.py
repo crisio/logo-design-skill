@@ -20,6 +20,7 @@ import os
 import re
 import sys
 
+sys.dont_write_bytecode = True  # keep the skill folder clean (no __pycache__)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import svglib  # noqa: E402
 
@@ -164,7 +165,8 @@ def audit(path, bg=None):
         if near:
             sample = "; ".join(f"{x[0]}° (→{x[1]}°) len {x[2]} at ({x[3][0]:.0f},{x[3][1]:.0f})" for x in near[:6])
             add("WARN", "near-miss-angle", f"{len(near)} straight edge(s) are 0.3–3° off a clean angle — they read as "
-                f"mistakes. Snap them: {sample}" + (" …" if len(near) > 6 else ""))
+                f"mistakes. Snap them: {sample}" + (" …" if len(near) > 6 else "") +
+                ". (Expected — and fine — for type set on a curve or deliberately rotated elements.)")
         # tiny details — symbols must survive ~48 px, lockups ~32 px of height
         if info.get("aspect_class") in ("wide", "horizontal", "extra-wide"):
             ref, label = vb[3] / 32, "1/32 of the lockup height (≈1 px at 32 px tall)"

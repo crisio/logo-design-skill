@@ -8,6 +8,7 @@ round; set "greyscale": false for colour, and "final": true for a single final-d
 
 Usage:
   python3 scripts/presentation_board.py spec.json -o presentation.html
+  python3 scripts/presentation_board.py spec.json -o board.html --png-dir slides   # + one PNG per slide
   python3 scripts/presentation_board.py --list-mockups
 
 spec.json (paths relative to the spec file; see templates/presentation-spec.example.json):
@@ -18,12 +19,13 @@ spec.json (paths relative to the spec file; see templates/presentation-spec.exam
   "nav": ["Shop", "Cafés", "Story"],       # optional website menu items
   "brand_color": "#B5532F", "greyscale": true, "final": false, "round": 1,
   "concepts": [
-    {"name": "Kiln K", "symbol": "b-symbol.svg", "lockup": "b-horizontal.svg", "avatar": "b-avatar.svg",
+    {"name": "Kiln K", "symbol": "b-symbol.svg", "lockup": "b-horizontal.svg", "stacked": "b-stacked.svg", "avatar": "b-avatar.svg",
      "idea": "One sentence.", "rationale": ["…", "…"]}
   ],
   "recommendation": "…"
 }
-Each concept needs at least one of symbol / lockup / avatar; missing ones fall back sensibly
+Each concept needs at least one of symbol / lockup / avatar; "stacked" (optional) is used on bags, signs and badges.
+Missing ones fall back sensibly
 (a wordmark-only concept can provide just "lockup" plus an "avatar" for small uses).
 """
 import argparse
@@ -33,6 +35,7 @@ import json
 import os
 import sys
 
+sys.dont_write_bytecode = True  # keep the skill folder clean (no __pycache__)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import svglib  # noqa: E402
 
@@ -79,7 +82,7 @@ ul.rat{padding-left:18px;margin:0}ul.rat li{margin:6px 0}
 .bc{width:250px;height:143px;background:#fff;border-radius:5px;box-shadow:0 10px 26px rgba(0,0,0,.22);padding:16px;display:flex;flex-direction:column;justify-content:space-between;transform:translate(-50px,-38px) rotate(-4deg)}
 .bc2{position:absolute;width:250px;height:143px;border-radius:5px;transform:translate(70px,52px) rotate(6deg);box-shadow:0 10px 26px rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center}
 .bc .t{font-size:9px;line-height:1.5;color:#333}
-.phone{width:150px;height:250px;border-radius:26px;background:#10151c;padding:10px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.phone{width:172px;height:250px;border-radius:26px;background:#10151c;padding:10px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
 .screen{width:100%;height:100%;border-radius:18px;background:linear-gradient(170deg,#e9edf1,#cfd7df);display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:18px 12px;align-content:start}
 .ai{width:34px;height:34px;border-radius:9px;background:rgba(0,0,0,.08);justify-self:center}
 .web{width:340px;height:210px;background:#fff;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.15);overflow:hidden}
@@ -137,6 +140,7 @@ def uri(path, base):
 def mock_html(kind, c):
     """c: dict with sym, lock, avatar, color, cls, name, tag, nav."""
     sym, lock, av, cls, name, tag = c["sym"], c["lock"], c["avatar"], c["cls"], c["name"], c["tag"]
+    stack = c.get("stacked") or lock   # stacked lockup for tall/boxy surfaces (bags, signs, badges) when provided
     tile = c["tile"]
     handle = html.escape(name.lower().replace(" ", ""))
     n = html.escape(name)
@@ -157,7 +161,7 @@ def mock_html(kind, c):
                 f'<div class="hero2"><b>{html.escape(tag) or n}</b><span></span><span style="width:60%"></span></div></div><span class="lbl">Website</span></div>')
     if kind == "signage":
         return (f'<div class="m" style="background:#b9bcc0"><div class="sign"><div class="board" style="background:#161616">'
-                f'<img class="w" src="{lock}" style="max-height:34px;max-width:190px"></div><div class="door"></div></div><span class="lbl">Storefront / signage</span></div>')
+                f'<img class="w" src="{stack}" style="max-height:{58 if stack != lock else 34}px;max-width:190px"></div><div class="door"></div></div><span class="lbl">Storefront / signage</span></div>')
     if kind == "tote":
         return (f'<div class="m" style="background:#cfc6b6"><div class="tote"><img class="k" src="{av}" style="max-height:80px;max-width:110px;opacity:.88"></div>'
                 '<span class="lbl">Tote bag</span></div>')
@@ -174,7 +178,7 @@ def mock_html(kind, c):
                 f'<img class="{cls}" src="{lock}" style="max-height:18px;max-width:120px"><div class="t">{html.escape(tag)[:40]}</div></div>'
                 '<span class="lbl">Packaging bag</span></div>')
     if kind == "shopping-bag":
-        return (f'<div class="m" style="background:#e3ded6"><div class="sbag" style="background:{tile}"><img class="w" src="{lock}" style="max-height:40px;max-width:130px"></div>'
+        return (f'<div class="m" style="background:#e3ded6"><div class="sbag" style="background:{tile}"><img class="w" src="{stack}" style="max-height:{96 if stack != lock else 40}px;max-width:130px"></div>'
                 '<span class="lbl">Shopping bag</span></div>')
     if kind == "box":
         return (f'<div class="m" style="background:#d6d9dc"><div class="box"><img class="{cls}" src="{lock}" style="max-height:44px;max-width:160px"></div>'
@@ -196,7 +200,7 @@ def mock_html(kind, c):
         return (f'<div class="m" style="background:#e4e1dc"><div class="shirt">{shirt}<img class="w" src="{av}" style="position:relative;max-height:56px;max-width:70px;margin-top:10px"></div>'
                 '<span class="lbl">T-shirt</span></div>')
     if kind == "badge":
-        return (f'<div class="m" style="background:#d9dde2"><div class="badge"><div class="hole"></div><img class="{cls}" src="{lock}" style="max-height:34px;max-width:130px">'
+        return (f'<div class="m" style="background:#d9dde2"><div class="badge"><div class="hole"></div><img class="{cls}" src="{stack}" style="max-height:{70 if stack != lock else 34}px;max-width:130px">'
                 '<div class="nm">Alex Morgan</div><div class="rl">Speaker</div></div><span class="lbl">Event badge</span></div>')
     if kind == "favicon-tab":
         return (f'<div class="m" style="background:#eceff1"><div class="tabbar"><div class="tab"><img class="{cls}" src="{av}" style="width:16px;height:16px;object-fit:contain">'
@@ -223,6 +227,7 @@ def main():
     ap.add_argument("spec", nargs="?")
     ap.add_argument("-o", "--out", default="presentation.html")
     ap.add_argument("--list-mockups", action="store_true")
+    ap.add_argument("--png-dir", help="also export every slide as slide-NN.png (needs Chrome/Chromium)")
     a = ap.parse_args()
     if a.list_mockups:
         print("mockups:", ", ".join(ALL_MOCKUPS))
@@ -253,12 +258,22 @@ def main():
         return f'<div class="foot"><span>{html.escape(brand)} — {html.escape(deck_title)}</span><span>{i}</span></div>'
 
     slides = []
-    kicker = "Final identity" if final else f"Logo design · round {spec.get('round', 1)}"
+    custom_title = spec.get("deck_title")
+    cover_mark = ""
+    if final and concepts:
+        c0 = concepts[0]
+        first = c0.get("lockup") or c0.get("symbol") or c0.get("avatar")
+        if first:
+            cover_mark = (f'<div style="position:absolute;right:64px;top:50%;transform:translateY(-50%);width:520px;'
+                          f'height:300px;display:flex;align-items:center;justify-content:center">'
+                          f'<img class="{cls}" src="{uri(first, base)}" style="max-width:100%;max-height:100%"></div>')
+    kicker = (custom_title.capitalize() if (final and custom_title) else "Final identity") if final \
+        else f"Logo design · round {spec.get('round', 1)}"
     note = ("Concepts are shown in greyscale so the conversation stays on form and idea; colour follows once a "
             "direction is chosen." if grey and not final else "")
     slides.append(f"""<section class="slide"><div class="kicker">{kicker}</div>
 <h1>{html.escape(brand)}</h1><p class="idea muted">{html.escape(deck_title.capitalize())}{(' · ' + html.escape(designer)) if designer else ''} · {date}</p>
-<p class="muted" style="max-width:720px;margin-top:120px">{note}</p>{foot(1)}</section>""")
+{cover_mark}<p class="muted" style="max-width:720px;margin-top:120px">{note}</p>{foot(1)}</section>""")
     adj = "".join(f"<span>{html.escape(x)}</span>" for x in spec.get("adjectives", []))
     crit = spec.get("criteria", "Success: distinctive in its category, recognisable at 16 px, works in one colour, "
                                 "and feels like the words above.")
@@ -274,8 +289,10 @@ def main():
         sym = uri(c.get("symbol") or c.get("avatar") or c.get("lockup"), base)
         lock = uri(c.get("lockup") or c.get("symbol") or c.get("avatar"), base)
         av = uri(c.get("avatar") or c.get("symbol") or c.get("lockup"), base)
+        stacked = uri(c["stacked"], base) if c.get("stacked") else None
         items.append((c, sym, lock))
-        label = "Final design" if final else f"Concept {chr(65 + i)}"
+        label = spec.get("label") or ((custom_title.capitalize() if custom_title else "Final design") if final
+                                      else f"Concept {chr(65 + i)}")
         rat = "".join(f"<li>{html.escape(r)}</li>" for r in c.get("rationale", []))
         sizes = "".join(f'<div><img class="{cls}" src="{av}" style="height:{s}px">{s}px</div>' for s in (16, 24, 32, 64))
         slides.append(f"""<section class="slide"><div class="kicker">{label}</div><h2>{html.escape(c.get('name', ''))}</h2>
@@ -284,7 +301,7 @@ def main():
 <div><ul class="rat">{rat}</ul><div class="sizes">{sizes}</div><div class="rev"><img class="w" src="{lock}" style="max-height:44px;max-width:300px"></div></div></div>
 {foot(len(slides) + 1)}</section>""")
         ctx = {"sym": sym, "lock": lock, "avatar": av, "cls": cls, "name": brand, "tag": spec.get("tagline", ""),
-               "tile": tile, "nav": nav}
+               "tile": tile, "nav": nav, "stacked": stacked}
         cells = "".join(mock_html(k, ctx) for k in mockups)
         slides.append(f"""<section class="slide"><div class="kicker">{label} · in use</div><h2>{html.escape(c.get('name', ''))}</h2>
 <div class="mock">{cells}</div>{foot(len(slides) + 1)}</section>""")
@@ -308,6 +325,24 @@ def main():
     with open(a.out, "w", encoding="utf-8") as fh:
         fh.write(doc)
     print(f"wrote {a.out} ({len(slides)} slides; mockups: {', '.join(mockups)})")
+    if a.png_dir:
+        import tempfile
+        import render_png
+        os.makedirs(a.png_dir, exist_ok=True)
+        solo_css = CSS + "body{background:#fff}.slide{margin:0;box-shadow:none;min-height:800px}"
+        for i, sl in enumerate(slides, 1):
+            with tempfile.NamedTemporaryFile("w", suffix=".html", delete=False, encoding="utf-8") as fh:
+                fh.write(f"<!doctype html><html><head><meta charset='utf-8'><style>{solo_css}</style></head><body>{sl}</body></html>")
+                tmp_html = fh.name
+            out = os.path.join(a.png_dir, f"slide-{i:02d}.png")
+            try:
+                render_png.screenshot_html(tmp_html, out, 1280, 800)
+                print("wrote", out)
+            except Exception as exc:
+                print(f"slide PNG export failed ({exc}); open the HTML instead")
+                break
+            finally:
+                os.unlink(tmp_html)
 
 
 if __name__ == "__main__":

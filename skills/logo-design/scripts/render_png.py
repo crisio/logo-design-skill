@@ -16,6 +16,7 @@ Usage:
   python3 scripts/render_png.py symbol.svg -o preview.png --size 256 --bg "#ffffff"
   python3 scripts/render_png.py a.svg b.svg c.svg --out-dir renders --size 400      # batch, for viewing
   python3 scripts/render_png.py favicon.svg --ico favicon.ico --ico-sizes 16 32 48
+  python3 scripts/render_png.py preview.html -o preview.png --width 1400 --height 3000  # screenshot an HTML page (Chrome)
   python3 scripts/render_png.py --which                                             # show available backends
 """
 import argparse
@@ -123,7 +124,6 @@ def _inkscape(svg_file, png, w, h):
 
 
 def _chrome(svg_file, png, w, h):
-    chrome = find_chrome()
     with open(svg_file, "rb") as fh:
         data = base64.b64encode(fh.read()).decode("ascii")
     page = (f"<!doctype html><html><head><style>html,body{{margin:0;padding:0;background:transparent;width:{w}px;"
@@ -131,9 +131,19 @@ def _chrome(svg_file, png, w, h):
             f"<body><img src='data:image/svg+xml;base64,{data}'></body></html>")
     with tempfile.TemporaryDirectory() as tmp:
         html_path = os.path.join(tmp, "render.html")
-        shot = os.path.join(tmp, "shot.png")  # never poll the destination: an older file may already exist there
         with open(html_path, "w", encoding="utf-8") as fh:
             fh.write(page)
+        screenshot_html(html_path, png, w, h)
+
+
+def screenshot_html(html_path, png, w, h):
+    """Screenshot an HTML page (viewport w×h, transparent where the page is) with headless Chrome/Chromium."""
+    chrome = find_chrome()
+    if not chrome:
+        raise RuntimeError("no Chromium-based browser found for HTML screenshots")
+    html_path = os.path.abspath(html_path)
+    with tempfile.TemporaryDirectory() as tmp:
+        shot = os.path.join(tmp, "shot.png")  # never poll the destination: an older file may already exist there
         cmd = [chrome, "--headless=new", "--disable-gpu", "--hide-scrollbars", "--no-first-run",
                "--no-default-browser-check", "--use-mock-keychain", "--password-store=basic", "--disable-extensions",
                "--default-background-color=00000000", f"--window-size={w},{h}", f"--screenshot={shot}",
@@ -295,6 +305,17 @@ def main():
 
     rc = 0
     for f in a.files:
+        if f.lower().endswith((".html", ".htm")):
+            out = a.out if (a.out and len(a.files) == 1) else os.path.join(a.out_dir or os.path.dirname(os.path.abspath(f)),
+                                                                          os.path.splitext(os.path.basename(f))[0] + ".png")
+            w, h = a.width or 1400, a.height or 900
+            try:
+                screenshot_html(f, out, w, h)
+                print(f"wrote {out}  {w}×{h}  via chrome (HTML screenshot)")
+            except Exception as exc:
+                rc = 1
+                print(f"could not screenshot {f}: {exc}")
+            continue
         if a.out and len(a.files) == 1:
             out = a.out
         else:
