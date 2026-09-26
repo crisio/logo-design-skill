@@ -38,7 +38,7 @@ Form must stand on its own.
 ## 2. Structure of a concept presentation
 
 For the checkpoint, the concept overview image plus a short chat message is enough (see SKILL.md). For a fuller
-client presentation (round 2, or when the user asks for one), use `scripts/presentation_board.py` to generate an HTML board — set `"industry"` (coffee, food, retail, fashion, software, consumer-app, services, event, education, health) or an explicit `"mockups"` list so every context fits the business (`--list-mockups` shows all) — or follow this outline in chat/slides:
+client presentation (round 2, or when the user asks for one), use `scripts/presentation_board.py` to generate an HTML board — set `"industry"` (coffee, food, retail, fashion, software, saas, finance, consumer-app, services, event, education, health) or an explicit `"mockups"` list so every context fits the business (`--list-mockups` shows all) — or follow this outline in chat/slides:
 
 1. **Title** — client, project, date, designer(s).
 2. **What we heard** — the brief in a few lines: audience, adjectives, the problem, success criteria. This reminds

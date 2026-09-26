@@ -140,6 +140,40 @@ def main():
         print("mood (top 40):", ", ".join(k for k, _ in moods.most_common(40)))
         return
 
+    # forgive near-miss filter values: "security" -> "security-identity", "fintech" -> "payments-fintech"
+    for attr, field in (("industry", "industry"), ("type", "mark_type"), ("symbol_type", "symbol_type"),
+                        ("type_style", "type_style"), ("aspect", "aspect_class"), ("primary_color", "primary_family")):
+        val = getattr(a, attr)
+        if not val:
+            continue
+        known = sorted({str(r.get(field)) for r in cat if r.get(field)})
+        if val in known:
+            continue
+        close = [k for k in known if val.lower() in k.lower() or k.lower() in val.lower()]
+        if len(close) == 1:
+            print(f"(--{attr.replace('_', '-')} '{val}' → using '{close[0]}')")
+            setattr(a, attr, close[0])
+        else:
+            hint = ", ".join(close) if close else ", ".join(known)
+            sys.exit(f"unknown --{attr.replace('_', '-')} '{val}'. Did you mean: {hint}")
+    for attr, field in (("technique", "techniques"), ("geometry", "geometry")):
+        val = getattr(a, attr)
+        if not val:
+            continue
+        known = sorted({v for r in cat for v in r.get(field, [])})
+        fixed = []
+        for part in val.split(","):
+            if part in known:
+                fixed.append(part)
+                continue
+            close = [k for k in known if part.lower() in k.lower()]
+            if len(close) == 1:
+                print(f"(--{attr} '{part}' → using '{close[0]}')")
+                fixed.append(close[0])
+            else:
+                sys.exit(f"unknown --{attr} '{part}'. Did you mean: {', '.join(close) if close else ', '.join(known)}")
+        setattr(a, attr, ",".join(fixed))
+
     rows = [r for r in cat if matches(r, a)]
     rows.sort(key=lambda r: (not r.get("exemplary"), r.get("anchors", 0)))
     if a.summary:

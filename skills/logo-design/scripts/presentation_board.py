@@ -54,13 +54,17 @@ PRESETS = {
     "event": ["badge", "tshirt", "website", "social", "sticker", "signage"],
     "education": ["website", "badge", "tshirt", "social", "business-card", "app-icon"],
     "health": ["website", "app-icon", "signage", "business-card", "social", "box"],
+    "finance": ["payment-card", "app-icon", "website", "social", "business-card", "favicon-tab"],
+    "saas": ["website", "favicon-tab", "app-icon", "social", "sticker", "business-card"],
 }
 ALIASES = {
-    "developer": "software", "developer-tools": "software", "devtool": "software", "saas": "software", "tech": "software",
+    "fintech": "finance", "bank": "finance", "banking": "finance", "payments": "finance", "insurance": "finance",
+    "accounting": "finance", "b2b-saas": "saas", "startup": "saas",
+    "developer": "software", "developer-tools": "software", "devtool": "software", "tech": "software",
     "open-source": "software", "ai": "software", "app": "consumer-app", "mobile": "consumer-app", "cafe": "coffee",
     "café": "coffee", "roaster": "coffee", "restaurant": "food", "bakery": "food", "beverage": "food", "drink": "food",
     "ecommerce": "retail", "shop": "retail", "store": "retail", "agency": "services", "consulting": "services",
-    "finance": "services", "legal": "services", "conference": "event", "festival": "event", "school": "education",
+    "legal": "services", "conference": "event", "festival": "event", "school": "education",
     "university": "education", "clinic": "health", "wellness": "health",
 }
 DEFAULT_NAV = {"software": ["Docs", "Pricing", "GitHub"], "coffee": ["Shop", "Cafés", "Story"],
@@ -86,9 +90,11 @@ ul.rat{padding-left:18px;margin:0}ul.rat li{margin:6px 0}
 .bc{width:250px;height:143px;background:#fff;border-radius:5px;box-shadow:0 10px 26px rgba(0,0,0,.22);padding:16px;display:flex;flex-direction:column;justify-content:space-between;transform:translate(-50px,-38px) rotate(-4deg)}
 .bc2{position:absolute;width:250px;height:143px;border-radius:5px;transform:translate(70px,52px) rotate(6deg);box-shadow:0 10px 26px rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center}
 .bc .t{font-size:9px;line-height:1.5;color:#333}
-.phone{width:172px;height:250px;border-radius:26px;background:#10151c;padding:10px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
-.screen{width:100%;height:100%;border-radius:18px;background:linear-gradient(170deg,#e9edf1,#cfd7df);display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:18px 12px;align-content:start}
-.ai{width:34px;height:34px;border-radius:9px;background:rgba(0,0,0,.08);justify-self:center}
+.phone{width:150px;height:224px;margin-bottom:14px;border-radius:24px;background:#10151c;padding:9px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.screen{width:100%;height:100%;border-radius:16px;background:linear-gradient(170deg,#e9edf1,#cfd7df);display:grid;grid-template-columns:repeat(3,1fr);gap:9px;padding:16px 10px;align-content:start}
+.ai{width:32px;height:32px;border-radius:8px;background:rgba(0,0,0,.08);justify-self:center}
+.bigapp{display:flex;flex-direction:column;align-items:center;gap:10px;font-size:12px;font-weight:600;color:#333;margin-left:30px}
+.bigapp .bi{width:108px;height:108px;border-radius:25px;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 26px rgba(0,0,0,.2)}
 .web{width:340px;height:210px;background:#fff;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.15);overflow:hidden}
 .web .bar{height:22px;background:#eceff2;display:flex;gap:5px;align-items:center;padding:0 8px}.web .bar i{width:7px;height:7px;border-radius:50%;background:#c9ced4}
 .web .nav{height:44px;display:flex;align-items:center;padding:0 16px;gap:14px;font-size:9px;color:#666;border-bottom:1px solid #eee}
@@ -126,6 +132,11 @@ ul.rat{padding-left:18px;margin:0}ul.rat li{margin:6px 0}
 .badge{width:170px;height:235px;background:#fff;border-radius:10px;box-shadow:0 10px 24px rgba(0,0,0,.2);display:flex;flex-direction:column;align-items:center;padding:20px 14px;gap:14px;position:relative;margin-top:30px}
 .badge:before{content:"";position:absolute;top:-60px;left:50%;width:22px;height:62px;transform:translateX(-50%)}
 .badge .hole{width:40px;height:8px;border-radius:4px;background:#ddd}.badge .nm{font-size:15px;font-weight:600}.badge .rl{font-size:10px;color:#777}
+.pcard{position:relative;width:300px;height:189px;border-radius:14px;box-shadow:0 14px 30px rgba(0,0,0,.28);font:600 12px ui-monospace,Menlo,monospace}
+.pcard .chip{position:absolute;left:22px;top:76px;width:40px;height:30px;border-radius:6px;background:linear-gradient(135deg,#e9d8a6,#c9a95c)}
+.pcard .num{position:absolute;left:22px;top:122px;letter-spacing:.12em;font-size:14px}
+.pcard .holder{position:absolute;left:22px;bottom:18px;font-size:10px;letter-spacing:.14em;opacity:.85}
+.pcard .brandline{position:absolute;right:20px;bottom:16px;font:700 13px system-ui,sans-serif;opacity:.9}
 .tabbar{width:340px;background:#dfe1e5;border-radius:10px;padding:8px 8px 0}
 .tab{width:230px;height:36px;background:#fff;border-radius:10px 10px 0 0;display:flex;align-items:center;gap:8px;padding:0 12px;font-size:11px;color:#333}
 .addr{height:40px;background:#fff;display:flex;align-items:center;padding:0 12px;font-size:10px;color:#777;border-top:1px solid #eee}
@@ -139,6 +150,20 @@ img.g{filter:grayscale(1)}img.w{filter:brightness(0) invert(1)}img.k{filter:brig
 def uri(path, base):
     p = path if os.path.isabs(path) else os.path.join(base, path)
     return svglib.svg_data_uri(p)
+
+
+def text_on(bg):
+    """White text while it keeps 3:1 on the background, near-black below that (white if the colour can't be parsed)."""
+    h = (bg or "").strip().lstrip("#")
+    if len(h) == 3:
+        h = "".join(ch * 2 for ch in h)
+    try:
+        rgb = [int(h[i:i + 2], 16) / 255 for i in (0, 2, 4)]
+    except ValueError:
+        return "#fff"
+    lin = [v / 12.92 if v <= 0.04045 else ((v + 0.055) / 1.055) ** 2.4 for v in rgb]
+    lum = 0.2126 * lin[0] + 0.7152 * lin[1] + 0.0722 * lin[2]
+    return "#fff" if 1.05 / (lum + 0.05) >= 3 else "#161616"
 
 
 def mock_html(kind, c):
@@ -162,9 +187,12 @@ def mock_html(kind, c):
     if kind == "app-icon":
         cells = "".join('<div class="ai"></div>' for _ in range(4))
         icon = (f'<div class="ai" style="background:{tile};display:flex;align-items:center;justify-content:center">'
-                f'<img class="{wat}" src="{avt}" style="max-height:20px;max-width:22px"></div>')
+                f'<img class="{wat}" src="{avt}" style="max-height:19px;max-width:21px"></div>')
+        # the home screen shows the icon among others; the large tile beside it shows it at store size
+        big = (f'<div class="bigapp"><div class="bi" style="background:{tile}"><img class="{wat}" src="{avt}" '
+               f'style="max-height:62px;max-width:70px"></div>{n}</div>')
         return (f'<div class="m" style="background:#eef0f2"><div class="phone"><div class="screen">{cells}{icon}'
-                + "".join('<div class="ai"></div>' for _ in range(7)) + '</div></div><span class="lbl">App icon</span></div>')
+                + "".join('<div class="ai"></div>' for _ in range(7)) + f'</div></div>{big}<span class="lbl">App icon</span></div>')
     if kind == "website":
         nav = "".join(f"<span>{html.escape(x)}</span>" for x in c["nav"])
         return (f'<div class="m" style="background:#e4e8ec"><div class="web"><div class="bar"><i></i><i></i><i></i></div>'
@@ -213,13 +241,19 @@ def mock_html(kind, c):
     if kind == "badge":
         return (f'<div class="m" style="background:#d9dde2"><div class="badge"><div class="hole"></div><img class="{cls}" src="{stack}" style="max-height:{70 if stack != lock else 34}px;max-width:130px">'
                 '<div class="nm">Alex Morgan</div><div class="rl">Speaker</div></div><span class="lbl">Event badge</span></div>')
+    if kind == "payment-card":
+        return (f'<div class="m" style="background:#dfe3e8"><div class="pcard" style="background:{tile};color:{text_on(tile)}">'
+                f'<img class="{wat}" src="{avt}" style="position:absolute;left:22px;top:20px;max-height:34px;max-width:70px">'
+                f'<div class="chip"></div><div class="num">•••• •••• •••• 4821</div>'
+                f'<div class="holder">ALEX MORGAN</div><div class="brandline">{n}</div></div>'
+                '<span class="lbl">Payment card</span></div>')
     if kind == "favicon-tab":
         return (f'<div class="m" style="background:#eceff1"><div class="tabbar"><div class="tab"><img class="{cls}" src="{av}" style="width:16px;height:16px;object-fit:contain">'
                 f'{n} — Home<span style="margin-left:auto">✕</span></div><div class="addr">https://{handle}.com</div></div><span class="lbl">Browser tab</span></div>')
     raise KeyError(kind)
 
 
-ALL_MOCKUPS = ["business-card", "app-icon", "website", "signage", "tote", "social", "cup", "bag", "shopping-bag", "box",
+ALL_MOCKUPS = ["payment-card", "business-card", "app-icon", "website", "signage", "tote", "social", "cup", "bag", "shopping-bag", "box",
                "readme", "terminal", "sticker", "tshirt", "badge", "favicon-tab"]
 
 
@@ -228,7 +262,7 @@ def pick_mockups(spec):
         chosen = [m for m in spec["mockups"] if m in ALL_MOCKUPS]
     else:
         ind = str(spec.get("industry", "")).lower()
-        key = ALIASES.get(ind, ind)
+        key = ind if ind in PRESETS else ALIASES.get(ind, ind)   # a real preset name always wins over an alias
         chosen = PRESETS.get(key, PRESETS["services"])
     return chosen[:6] if len(chosen) >= 6 else (chosen + [m for m in PRESETS["services"] if m not in chosen])[:6]
 
@@ -304,6 +338,9 @@ def main():
         dark = {}
         if not grey:
             pick = lambda *keys: next((c[k] for k in keys if c.get(k)), None)
+            if c.get("symbol_on_dark") and not c.get("symbol_on_tile"):
+                print(f"note: concept {chr(65 + i)} has no symbol_on_tile; symbol_on_dark is used on the {tile} tiles "
+                      "(app icon, cards) — check its contrast there, or pass a dedicated tile file")
             for k, src in (("avatar_tile", pick("symbol_on_tile", "symbol_on_dark")),
                            ("stack_tile", pick("stacked_on_tile", "lockup_on_tile")),
                            ("avatar_dark", pick("symbol_on_dark")), ("lock_dark", pick("lockup_on_dark")),
