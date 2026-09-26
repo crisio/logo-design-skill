@@ -1,6 +1,6 @@
 # Logo Design Skill for Claude
 
-![Five example runs of the logo-design skill](docs/images/hero.png)
+![Eleven example runs of the logo-design skill](docs/images/hero.png)
 
 A comprehensive **logo-design skill** that turns Claude into a disciplined identity designer — from the first
 brief to production-ready SVG files and brand guidelines.
@@ -41,73 +41,124 @@ makes sense for an approved idea.
 
 ## Examples
 
-Five fictional briefs, five sectors, five deliberately different styles — each run end to end with the skill.
-For every brand you see exactly what the skill shows at the checkpoint (greyscale concepts with true 64/32/16 px
-sizes), followed by a colour preview of the recommended direction on mockups chosen for that industry.
+Eleven fictional briefs across eleven sectors, from quiet luxury to neon festival — each run end to end with the
+skill. For every brand you see exactly what the skill shows at the checkpoint (greyscale concepts with true
+64/32/16 px sizes and a recommendation), followed by a colour preview of the chosen direction on mockups picked for
+that industry. The second batch deliberately pushes **vivid, saturated palettes** — while still passing the
+one-colour and 3 : 1 contrast checks.
 
-| Brand | Sector | Style | Recommended mark |
+| Brand | Sector | Style | Chosen mark |
 |---|---|---|---|
 | [Kiln](#kiln--specialty-coffee-roaster) | Specialty coffee | Warm, crafted, modern | Letterform + custom wordmark |
-| [Maison Orvelle](#maison-orvelle--luxury-fashion-atelier) | Luxury fashion | High-contrast Didone, monogram | Monogram |
-| [Tinkertrail](#tinkertrail--kids-stem-workshops) | Kids' STEM education | Playful, rounded, multi-colour | Mascot |
+| [Zestly](#zestly--food-delivery-app) | Food delivery | Juicy, cheeky, tomato & lime | Mascot |
+| [Maison Orvelle](#maison-orvelle--luxury-fashion-atelier) | Luxury fashion | High-contrast Didone | Monogram |
+| [Pulsewave](#pulsewave--music--arts-festival) | Music festival | Neon on night, kinetic | Abstract letterform |
+| [Tinkertrail](#tinkertrail--kids-stem-workshops) | Kids' STEM education | Playful, rounded, multi-colour | Letterform |
+| [Ralli](#ralli--padel--tennis-app) | Sports app | Dynamic italic, electric coral | Letterform |
 | [Alderpeak](#alderpeak--outdoor-gear) | Outdoor gear | Rugged, slab, earthy | Pictorial symbol |
-| [Calmera](#calmera--physiotherapy-clinic) | Physiotherapy clinic | Soft, organic, calm | Pictorial symbol |
+| [Driftwell](#driftwell--surf-hostel--café) | Hospitality | Azulejo tile, coastal brights | Emblem + symbol |
+| [Calmera](#calmera--physiotherapy-clinic) | Physiotherapy | Soft, organic, calm | Pictorial symbol |
+| [Bramble Vet](#bramble-vet--veterinary-clinic) | Veterinary | Friendly character, sunny | Mascot |
+| [Voltra](#voltra--solar-energy) | Clean energy | Geometric, volt orange | Abstract symbol |
 
 ### Kiln — specialty coffee roaster
-*Small-batch roaster in Istanbul: warm, crafted and modern — not rustic cliché. Must work on bags, cups and an
-Instagram avatar.*
+*Small-batch roaster in Istanbul: warm, crafted and modern — not rustic cliché. Must work on bags, cups and an Instagram avatar.*
 
 ![Kiln concepts](docs/images/kiln-concepts.png)
 
-**Recommended: Kiln K** — a K whose leg is the kiln's arched firing mouth; the arch returns as the *n* of the
-wordmark. The audit caught a 60.8° diagonal in an early *N* and an off-centre symbol before anything was shown.
+**Recommended: Kiln K** — a K whose leg is the kiln's arched firing mouth; the arch returns as the *n* of the wordmark. The audit caught a 60.8° diagonal in an early *N* and an off-centre symbol before anything was shown.
 
 ![Kiln in use](docs/images/kiln-board.png)
 
+### Zestly — food delivery app
+*Independent local kitchens delivered in 25 minutes: fresh, fast, appetising, cheeky — no forks, chef hats, scooters or map pins.*
+
+![Zestly concepts](docs/images/zestly-concepts.png)
+
+**Recommended: Big Grin** — a citrus wedge flipped into a cheeky, winking grin: appetite and generosity in one mark. Tomato red with a zest-lime rind and aubergine ink. The skill flags its honest risk too: some people read the wedge as watermelon.
+
+![Zestly in use](docs/images/zestly-board.png)
+
 ### Maison Orvelle — luxury fashion atelier
-*Paris womenswear, made-to-measure and small leather goods: elegant, refined, timeless — no crowns, laurels or gold
-gradients.*
+*Paris womenswear, made-to-measure and small leather goods: elegant, refined, timeless — no crowns, laurels or gold gradients.*
 
 ![Maison Orvelle concepts](docs/images/maison-orvelle-concepts.png)
 
-**Recommended: Pendant** — a Didone M whose vertex holds an O like a pendant at a V-neckline; it still reads at 16 px
-and is solid enough to emboss on leather. The craft pass dropped a shared-foot "LL" (it read as *ORVEILE*) and avoided
-an M-in-a-circle (too close to a famous transit sign).
+**Recommended: Pendant** — a Didone M whose vertex holds an O like a pendant at a V-neckline; it still reads at 16 px and is solid enough to emboss on leather. The craft pass dropped a shared-foot "LL" (it read as *ORVEILE*) and avoided an M-in-a-circle (too close to a famous transit sign).
 
 ![Maison Orvelle in use](docs/images/maison-orvelle-board.png)
 
+### Pulsewave — music & arts festival
+*Three-day electronic music and digital-arts festival by a lake: electric, rhythmic, euphoric — no equaliser bars, headphones or vinyl.*
+
+![Pulsewave concepts](docs/images/pulsewave-concepts.png)
+
+**Recommended: Crossing Beams** — two stage lights send four tapered beams; where the inner beams cross they draw the W, like raised arms, and they can sweep to the beat. Electric magenta, ultraviolet and cyan on night. Cyan only reaches 1.5 : 1 on white, so the skill keeps it for dark backgrounds.
+
+![Pulsewave in use](docs/images/pulsewave-board.png)
+
 ### Tinkertrail — kids' STEM workshops
-*Hands-on robotics and circuits workshops that tour schools: playful, curious, trustworthy — no lightbulbs, atoms,
-gears or rockets.*
+*Hands-on robotics and circuits workshops that tour schools: playful, curious, trustworthy — no lightbulbs, atoms, gears or rockets.*
 
 ![Tinkertrail concepts](docs/images/tinkertrail-concepts.png)
 
-**Recommended: Workshop Snail** — a curious snail that carries its workshop on its back, just as Tinkertrail brings
-it to every school. The skill flags the honest risks too: snails can suggest "slow", and the spiral fills in at 16 px,
-so a simplified favicon cut is part of the kit.
+**Chosen: Signpost t** — the t is a trail signpost pointing kids to the next discovery: a teal stem (the trail) and a coral sign (what's next). The skill had recommended the Workshop Snail; at the checkpoint the client picked the letterform because it stays sturdy for schools and reads at 16 px — exactly what the checkpoint is for.
 
 ![Tinkertrail in use](docs/images/tinkertrail-board.png)
+
+### Ralli — padel & tennis app
+*Book courts, find partners at your level and join leagues: energetic, social, sporty — no tennis balls, crossed rackets, trophies or swooshes.*
+
+![Ralli concepts](docs/images/ralli-concepts.png)
+
+**Recommended: Rally R** — one italic stroke goes up, over, back and away, like a rally; the leg was snapped to an exact 60°. Electric coral on night-court ink, with acid lime reserved for dark backgrounds.
+
+![Ralli in use](docs/images/ralli-board.png)
 
 ### Alderpeak — outdoor gear
 *Packs, shells and base layers from the Pacific Northwest: rugged, dependable, honest — no generic mountain-and-sun.*
 
 ![Alderpeak concepts](docs/images/alderpeak-concepts.png)
 
-**Recommended: Cairn** — three stacked stones build a summit, a peak and a trail marker in one; the tilted gaps zigzag
-like a switchback. Rejected along the way: a carabiner *a* (read as "cl") and tree-ring contours (read as a target).
+**Recommended: Cairn** — three stacked stones build a summit, a peak and a trail marker in one; the tilted gaps zigzag like a switchback. Rejected along the way: a carabiner *a* (read as "cl") and tree-ring contours (read as a target).
 
 ![Alderpeak in use](docs/images/alderpeak-board.png)
+
+### Driftwell — surf hostel & café
+*Design-led surf hostel and café on the Portuguese coast: sunny, laid-back, social — no palm trees, sunsets or surfboard silhouettes.*
+
+![Driftwell concepts](docs/images/driftwell-concepts.png)
+
+**Recommended: Azulejo Tile** — a Portuguese azulejo name tile with a D at its heart; laid edge to edge, the corner quarters join into suns. Atlantic blue, tangerine and sun yellow. The audit snapped the W and R diagonals to exact 75° and 45°.
+
+![Driftwell in use](docs/images/driftwell-board.png)
 
 ### Calmera — physiotherapy clinic
 *Rehab, sports physio and pilates: calm, caring, professional — no crosses, heartbeats, spines or hands-with-hearts.*
 
 ![Calmera concepts](docs/images/calmera-concepts.png)
 
-**Recommended: Still Heron** — a heron balancing on one leg in still water; single-leg balance is a standard rehab and
-pilates exercise, and nothing else in the category looks like it. An early abstract idea was dropped after the peer
-test found it too close to an existing mark, and the sage was darkened to reach 3 : 1 contrast.
+**Recommended: Still Heron** — a heron balancing on one leg in still water; single-leg balance is a standard rehab and pilates exercise, and nothing else in the category looks like it. An early abstract idea was dropped after the peer test found it too close to an existing mark, and the sage was darkened to reach 3 : 1 contrast.
 
 ![Calmera in use](docs/images/calmera-board.png)
+
+### Bramble Vet — veterinary clinic
+*A family vet for cats and dogs: warm, trustworthy, cheerful — no paws, bones, crosses or stethoscopes.*
+
+![Bramble Vet concepts](docs/images/bramble-vet-concepts.png)
+
+**Recommended: Odd Ears** — one smiling face with a pointed cat ear and a floppy dog ear: every cat and dog belongs. Cobalt and berry on sunny yellow. Several ideas were dropped when the reading test turned them into grapes, an anchor or a teapot.
+
+![Bramble Vet in use](docs/images/bramble-vet-board.png)
+
+### Voltra — solar energy
+*Rooftop solar, home batteries and an energy app: bright, optimistic, dependable — no sun rays, leaves, bolts or plugs.*
+
+![Voltra concepts](docs/images/voltra-concepts.png)
+
+**Recommended: Sun Dock** — the sun docks into a battery shaped to hold it, and the gap between them is a crescent moon: *sunshine, after dark*. Volt orange with night navy. A "charge-level o" was dropped because it read as *veltra*.
+
+![Voltra in use](docs/images/voltra-board.png)
 
 ---
 
