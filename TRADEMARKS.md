@@ -11,4 +11,7 @@ projects. **Every logo is a trademark or registered trademark of its respective 
 - Do not use these logos in your own products, marketing or designs except as permitted by their owners'
   brand guidelines and applicable law.
 
+The brands in the README examples (`docs/images/`) are fictional briefs created to demonstrate the skill; any
+resemblance to real businesses with similar names is unintended.
+
 If you own one of these trademarks and would like it removed, please open an issue and it will be taken down promptly.
