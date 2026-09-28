@@ -1,6 +1,6 @@
 # Logo Design Skill for Claude & AI Agents
 
-[![Tests](https://github.com/kaankiziltug/logo-design-skill/actions/workflows/test.yml/badge.svg)](https://github.com/kaankiziltug/logo-design-skill/actions/workflows/test.yml)
+[![Tests](https://github.com/kaankiziltug/logo-design-skill/actions/workflows/test.yml/badge.svg)](https://github.com/kaankiziltug/logo-design-skill/actions/workflows/test.yml) [![The New 100](https://www.theagenticleaderboard.com/badges/new/logo-design-skill.svg)](https://www.theagenticleaderboard.com/alternatives/logo-design-skill/)
 
 ![Eighteen example runs of the logo-design skill](docs/images/hero.png)
 
