@@ -1,0 +1,59 @@
+{
+  "brand": "Puerto",
+  "tagline": "Tu ahorro, a buen puerto",
+  "brief": "Una app de ahorro para quienes ahorran por primera vez y sienten que las finanzas los intimidan. Debe transmitir calma, seguridad y paciencia: lo opuesto a las llamativas apps para invertir en bolsa.",
+  "adjectives": [
+    "tranquila",
+    "segura",
+    "paciente",
+    "cálida"
+  ],
+  "criteria": "Éxito: se distingue de los logos fintech azules, se reconoce a 16 px, funciona a una tinta y transmite calma y seguridad.",
+  "industry": "consumer-app",
+  "nav": [
+    "Cómo funciona",
+    "Seguridad",
+    "Descargar"
+  ],
+  "brand_color": "#0F7C80",
+  "greyscale": true,
+  "designer": "Tu estudio",
+  "round": 1,
+  "concepts": [
+    {
+      "name": "Boya",
+      "symbol": "concept-a-symbol.svg",
+      "lockup": "concept-a-horizontal.svg",
+      "idea": "Una P cuya contraforma es un salvavidas.",
+      "rationale": [
+        "La letra-símbolo funciona como ícono de app y como favicon",
+        "El salvavidas transmite seguridad y calma",
+        "Construida sobre una retícula de 16 unidades con un solo radio"
+      ]
+    },
+    {
+      "name": "Bahía",
+      "symbol": "concept-b-symbol.svg",
+      "idea": "Una bahía protectora que resguarda una moneda en su espacio negativo.",
+      "rationale": [
+        "Protección sin el cliché del escudo",
+        "La moneda en el espacio negativo premia una segunda mirada"
+      ]
+    },
+    {
+      "name": "Marea",
+      "symbol": "concept-c-symbol.svg",
+      "idea": "Tres olas apiladas que suben como un saldo que crece.",
+      "rationale": [
+        "Crecimiento expresado con suavidad, no como una gráfica bursátil",
+        "Modular: se puede extender como patrón"
+      ]
+    }
+  ],
+  "recommendation": "Boya: la más distintiva, la más sólida en tamaños pequeños y la que se extiende con más naturalidad a un set de íconos.",
+  "next_steps": [
+    "Elige una dirección (o cuéntanos qué te gusta de cada una)",
+    "Ronda de refinamiento y color",
+    "Arte final, variantes y guía de marca breve"
+  ]
+}

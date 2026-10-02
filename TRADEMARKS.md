@@ -1,17 +1,17 @@
-# Trademarks notice
+# Aviso sobre marcas
 
-The folder `skills/logo-design/assets/library/svg/` contains 1,432 logos of companies, products and open-source
-projects. **Every logo is a trademark or registered trademark of its respective owner.**
+La carpeta `skills/marca/assets/library/svg/` contiene 1432 logos de empresas, productos y proyectos de código
+abierto. **Cada logo es una marca comercial o una marca registrada de su respectivo titular.**
 
-- They are included **solely as reference material** for studying logo construction, typology and category
-  conventions (nominative, educational use).
-- Their inclusion does **not** imply any affiliation with, or endorsement by, the trademark owners.
-- The MIT license of this repository does **not** apply to these files and grants no rights to them.
-- The skill instructs the model to study these marks, never to copy, trace or imitate them for new work.
-- Do not use these logos in your own products, marketing or designs except as permitted by their owners'
-  brand guidelines and applicable law.
+- Se incluyen **únicamente como material de referencia** para estudiar la construcción de logos, su tipología y las
+  convenciones de cada sector (uso nominativo y educativo).
+- Su inclusión **no** implica ninguna afiliación con los titulares de las marcas ni respaldo alguno de su parte.
+- La licencia MIT de este repositorio **no** se aplica a estos archivos y no otorga ningún derecho sobre ellos.
+- La skill le indica al modelo que estudie estos logos, nunca que los copie, los calque ni los imite en trabajos nuevos.
+- No uses estos logos en tus propios productos, materiales de marketing o diseños, salvo en la medida en que lo
+  permitan las guías de marca de sus titulares y la legislación aplicable.
 
-The brands in the README examples (`docs/images/`) are fictional briefs created to demonstrate the skill; any
-resemblance to real businesses with similar names is unintended.
+Las marcas de los ejemplos del README (`docs/images/`) corresponden a briefs ficticios creados para demostrar la skill;
+cualquier parecido con empresas reales de nombre similar es involuntario.
 
-If you own one of these trademarks and would like it removed, please open an issue and it will be taken down promptly.
+Si eres titular de una de estas marcas y quieres que se retire, abre un issue y se retirará sin demora.

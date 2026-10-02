@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-"""Package the skill as zip files for upload (e.g. claude.ai → Settings → Capabilities → Skills).
+"""Empaqueta la skill en archivos zip para subirla (por ejemplo, en claude.ai → Settings → Capabilities → Skills).
 
-  python tools/package_skill.py          # dist/logo-design.zip (full) + dist/logo-design-lite.zip
+  python tools/package_skill.py          # dist/marca.zip (completa) + dist/marca-lite.zip
 
-The lite package leaves out the 1,400+ SVG files and gallery.html (catalog metadata, scripts and all
-references are kept) for platforms with upload size limits.
+El paquete lite deja fuera los más de 1400 archivos SVG y gallery.html (conserva los metadatos del catálogo,
+los scripts y todas las referencias) para plataformas con límite de tamaño de subida.
 """
 import os
 import zipfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SKILL = os.path.join(ROOT, "skills", "logo-design")
+SKILL = os.path.join(ROOT, "skills", "marca")
 DIST = os.path.join(ROOT, "dist")
 SKIP_DIRS = {"__pycache__", ".DS_Store"}
 
@@ -30,10 +30,10 @@ def build(name, lite):
                 if lite and fn == "gallery.html":
                     continue
                 full = os.path.join(dirpath, fn)
-                z.write(full, os.path.join("logo-design", os.path.relpath(full, SKILL)))
+                z.write(full, os.path.join("marca", os.path.relpath(full, SKILL)))
     print(f"{out}  {os.path.getsize(out) / 1e6:.1f} MB")
 
 
 if __name__ == "__main__":
-    build("logo-design.zip", lite=False)
-    build("logo-design-lite.zip", lite=True)
+    build("marca.zip", lite=False)
+    build("marca-lite.zip", lite=True)

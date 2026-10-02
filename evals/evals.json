@@ -1,24 +1,32 @@
 {
-  "skill_name": "logo-design",
+  "skill_name": "marca",
   "evals": [
     {
       "id": 1,
-      "prompt": "Design a logo for Kiln, a small-batch specialty coffee roaster in Istanbul. It should feel warm, crafted and modern — not rustic cliché. It needs to work on coffee bags, paper cups and as an Instagram avatar. Give me three directions and your recommendation.",
-      "expected_output": "A short brief with stated assumptions and three distinct concepts (different mark types) built as clean SVG without live text, audited and tested at small sizes, shown as ONE concept overview image with a one-line idea each and a recommendation — then the skill stops and offers the full kit instead of producing it.",
+      "prompt": "Diseña un logo para Horno, un tostador de café de especialidad en Estambul que trabaja en lotes pequeños. Debe sentirse cálido, artesanal y moderno, sin caer en el cliché rústico. Tiene que funcionar en bolsas de café, vasos de papel y como avatar de Instagram. Dame tres direcciones y tu recomendación.",
+      "expected_output": "Un brief corto con los supuestos explícitos y tres conceptos distintos (de tipos de logo diferentes) construidos como SVG limpio sin texto vivo, auditados y probados en tamaños pequeños, presentados en UNA sola hoja de conceptos con la idea de cada uno en una línea y una recomendación. Después, la skill se detiene y ofrece el kit de logo completo en lugar de producirlo.",
       "files": []
     },
     {
       "id": 2,
-      "prompt": "I'm launching Tidepool, an open-source log search tool for developers. I need a logo I can use in the README, as a favicon and as an app icon. Keep it simple and technical but friendly.",
-      "expected_output": "Three concepts shown as a concept overview image with a recommendation, followed by an offer to build the kit (favicon, app icon, variants, usage notes). Only after the user says yes: exported favicon/app-icon/web-icon set, one-colour black/white variants and short usage notes for the chosen direction.",
+      "prompt": "Voy a lanzar Poza, una herramienta de código abierto para que los desarrolladores busquen en sus logs. Necesito un logo que pueda usar en el README, como favicon y como ícono de app. Que sea simple y técnico, pero amigable.",
+      "expected_output": "Tres conceptos presentados en una hoja de conceptos con una recomendación, seguidos de la oferta de construir el kit de logo (favicon, ícono de app, variantes, notas de uso). Solo después de que el usuario diga que sí: el set exportado de favicon, ícono de app e íconos web, las variantes a una tinta en negro y en blanco, y notas de uso breves para la dirección elegida.",
       "files": []
     },
     {
       "id": 3,
-      "prompt": "Here's our logo (logo.svg). Be honest: what's wrong with it, and how would you refresh it without losing recognition?",
-      "expected_output": "A structured critique with scorecard and top-3 prioritised fixes, an equity audit, and an evolutionary refresh proposal (optionally a revised SVG).",
+      "prompt": "Este es nuestro logo (logo.svg). Sé sincero: ¿qué tiene de malo y cómo lo renovarías sin perder el reconocimiento?",
+      "expected_output": "Una crítica estructurada con tabla de puntaje y las 3 correcciones principales por orden de prioridad, una auditoría del reconocimiento de marca y una propuesta de renovación evolutiva (opcionalmente, un SVG revisado).",
       "files": [
         "logo.svg"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Este es el logo de Nudo, nuestro agente de seguimiento de pedidos (nudo-simbolo.svg, verde #1B9E73). Conviértelo en su personaje 3D para usarlo como avatar del bot de Telegram.",
+      "expected_output": "Dos frases sobre qué se conservó del logo y cómo se convirtió en personaje; el avatar generado con una herramienta de imágenes (mascota 3D minimalista y táctil, dos ojos pequeños, colores de la marca, sin texto ni accesorios) como PNG cuadrado con fondo transparente verificado con check_alpha.py; el prompt final; y la propuesta guardada como versión nueva en personaje-3d/v1/ sin tocar los originales. Si no hay herramienta de imágenes, lo dice y entrega el prompt listo, sin afirmar que generó la imagen.",
+      "files": [
+        "nudo-simbolo.svg"
       ]
     }
   ]
